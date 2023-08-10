@@ -1,13 +1,16 @@
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 const allowedCors = [
+
+  'http://api.movie-hub.nomoreparties.co',
+  'https://api.movie-hub.nomoreparties.co',
   // 'http://domainsanyaman.students.nomoredomains.xyz',
   // 'https://domainsanyaman.students.nomoredomains.xyz',
   'http://localhost:3000',
   'https://localhost:3000',
   // 'http://api.domainsanyaman.nomoredomains.xyz/',
   // 'https://api.domainsanyaman.nomoredomains.xyz/',
-  'http://localhost:3001',
-  'https://localhost:3001',
+  // 'http://localhost:3001',
+  // 'https://localhost:3001',
 ];
 
 // eslint-disable-next-line consistent-return
