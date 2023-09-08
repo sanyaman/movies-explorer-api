@@ -1,13 +1,11 @@
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 const allowedCors = [
-  'http://api.movie-hub.nomoreparties.co',
-  'https://api.movie-hub.nomoreparties.co',
+  // 'http://api.movie-hub.nomoreparties.co',
+  // 'https://api.movie-hub.nomoreparties.co',
   'http://movie-hub.nomoredomainsicu.ru',
   'https://movie-hub.nomoredomainsicu.ru',
   'http://localhost:3000',
-  'https://localhost:3000',
-  // 'http://api.domainsanyaman.nomoredomains.xyz/',
-  // 'https://api.domainsanyaman.nomoredomains.xyz/',
+  // 'https://localhost:3000',
   // 'http://localhost:3001',
   // 'https://localhost:3001',
 ];
