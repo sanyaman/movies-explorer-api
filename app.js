@@ -4,13 +4,22 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const requestLimit = require('express-rate-limit');
-const cors = require('./middlewares/cors');
+// const cors = require('./middlewares/cors');
+const cors = require("cors");
 const routes = require('./routes/index');
 const errorServer = require('./middlewares/errorServer');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
 const { MONGODB = 'mongodb://127.0.0.1:27017/diplomdb' } = process.env;
+
+const allowedCors =  ['https://movie-hub.nomoredomainsicu.ru', 'http://localhost:3001', 'http://localhost:3000'];
+
+const corsOptions = {
+  origin: allowedCors,
+  optionsSuccessStatus: 200,
+  credentials: true,
+};
 
 const app = express();
 app.use(express.json());
@@ -20,8 +29,8 @@ mongoose.connect(MONGODB);
 app.use(express.urlencoded({ extended: true }));
 
 app.use(requestLogger);
-
-app.use(cors);
+app.use(cors(corsOptions));
+// app.use(cors);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
