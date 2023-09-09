@@ -21,6 +21,7 @@ module.exports.createUser = (req, res, next) => {
       data: {
         name: user.name,
         email: user.email,
+        _id: user._id,
       },
     }))
     .catch((err) => {
@@ -50,15 +51,20 @@ module.exports.login = (req, res, next) => {
           const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production'
             ? SECRET_KEY : 'PUTIN', { expiresIn: '7d' });
           res.cookie('jwt', token, {
-            maxAge: 3600000 * 24 * 7,
+            maxAge: 3600000 * 7 * 24,
             httpOnly: true,
-          });
-          res.send({ token });
+            sameSite: 'None',
+            secure: true,
+          }).send({ token });
         }).catch(() => { throw new UNAUTHORIZED('Ошибка в создании токена'); });
     })
     .catch(next);
 };
 
+module.exports.logout = (req, res) => {
+  res.clearCookie('jwt')
+    .send({ message: 'Вали!' });
+};
 module.exports.getUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => res.send(user))
@@ -82,7 +88,3 @@ module.exports.setUserInfo = (req, res, next) => {
     });
 };
 
-module.exports.logout = (req, res) => {
-  res.clearCookie('jwt')
-    .send({ message: 'Вали!' });
-};
