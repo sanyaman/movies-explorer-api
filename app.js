@@ -31,7 +31,7 @@ app.get('/crash-test', () => {
 
 const limiter = requestLimit({
   windowMs: 15 * 60 * 1000,
-  max: 1000,
+  max: 100000,
   standardHeaders: true,
   legacyHeaders: false,
   message:
